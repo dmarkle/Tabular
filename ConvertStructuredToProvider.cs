@@ -24,7 +24,7 @@ foreach (var ds in Model.DataSources.Where(a => a.Type.ToString() == "Structured
     // Update partitions to use the new provider data source
     foreach (var t in Model.Tables.ToList())
     {
-        foreach (var p in t.Partitions.Where(a => a.DataSource.Name == strdsName).ToList())
+        foreach (var p in t.Partitions.Where(a => a.DataSource != null && a.DataSource.Name == strdsName).ToList())
         {
             p.DataSource = provDataSource;
         }
